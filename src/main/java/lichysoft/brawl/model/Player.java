@@ -19,14 +19,15 @@ public class Player {
     private int maxAttack;
 
 
-    public Player() {}
+    public Player() {
+    }
 
-    public  Player(Long ID) {
+    public Player(Long ID) {
         this.ID = ID;
     }
 
     public Player(String type) throws Exception {
-        switch(type) {
+        switch (type) {
             case "Hunter":
                 this.nickName = "Hunter";
                 this.health = 1000;

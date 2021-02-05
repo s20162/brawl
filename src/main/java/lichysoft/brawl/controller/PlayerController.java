@@ -22,18 +22,12 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.findAll());
     }
 
-   /* @PostMapping
-    public ResponseEntity<Player> savePlayer(@RequestBody Player player) {
-
-        return ResponseEntity.ok(playerService.savePayer(player));
-
-    }*/
-
     @PostMapping("/delete/{playerID}")
     public String deletePlayer(@PathVariable Long playerID) {
         playerService.deletePlayerByID(playerID);
         return "Deleted";
     }
+
     @PostMapping("/RogueInfo")
     public String rogueInfo() {
         return playerService.getRogueInfo();

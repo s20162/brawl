@@ -32,21 +32,21 @@ public class PlayerService {
     public int calculatedDamage(Player player) {
         Random rand = new Random();
         int damage = rand.nextInt((player.getMaxAttack() - player.getMinAttack()) - 1) + player.getMinAttack();
-        if (damage>= player.getMaxAttack()*0.95) {
-            return (int) (damage*1.3);
-        } else if (damage<player.getMinAttack()*1.05) {
+        if (damage >= player.getMaxAttack() * 0.95) {
+            return (int) (damage * 1.3);
+        } else if (damage < player.getMinAttack() * 1.05) {
             return 0;
-        }else{
+        } else {
             return damage;
         }
 
     }
 
-    public void deletePlayerByID(Long ID){
+    public void deletePlayerByID(Long ID) {
         playerRepository.deleteById(ID);
     }
 
-    public void deleteAllPlayers(){
+    public void deleteAllPlayers() {
         playerRepository.deleteAll();
     }
 

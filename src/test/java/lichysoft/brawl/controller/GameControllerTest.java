@@ -9,8 +9,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,6 +58,17 @@ class GameControllerTest {
     }
 
     @Test
-    void specialAction() {
+    void specialAction() throws Exception {
+        gameService.choosePlayers("Priest", "Warrior");
+        Long turn = gameService.getPlayerTurn();
+        Long turn2;
+        if (turn == 1L) {
+            turn2 = 2L;
+        } else {
+            turn2 = 1L;
+        }
+        mockMvc.perform(post("/game/specialAction/" + turn + "/" + turn2))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(content().string(containsString("You performed special action")));
     }
 }

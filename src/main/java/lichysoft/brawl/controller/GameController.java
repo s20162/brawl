@@ -33,7 +33,7 @@ public class GameController {
     @PostMapping("/players/{playerOneClass}/{playerTwoClass}")
     public ResponseEntity<String> choosePlayers(@PathVariable String playerOneClass, @PathVariable String playerTwoClass) {
         return ResponseEntity.ok(gameService.choosePlayers(playerOneClass, playerTwoClass) +
-                "\n ") ;
+                "\n ");
 
     }
 

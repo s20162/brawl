@@ -57,7 +57,7 @@ class GameServiceTest {
     void shouldChoosePlayersWithWrongData() {
         String s1 = "Hunterr";
         String s2 = "Priweest";
-       // Assertions.assertThrows(Exception.class, () ->gameService.choosePlayers(s1, s2));
+        // Assertions.assertThrows(Exception.class, () ->gameService.choosePlayers(s1, s2));
         String message = gameService.choosePlayers(s1, s2);
         assertThat(message.contains("Wrong player class"));
 
@@ -74,7 +74,18 @@ class GameServiceTest {
     }
 
     @Test
-    void specialAction() {
+    void shouldSpecialAction() throws Exception {
+        Player test1 = new Player("Rogue");
+        Player test2 = new Player("Warrior");
+        playerService.savePayer(test1);
+        playerService.savePayer(test2);
+        int hp = test2.getHealth();
+        gameService.setPlayerTurn(test1.getID());
+        gameService.specialAction(playerService.findByID(test1.getID()).get().getID(),
+                playerService.findByID(test2.getID()).get().getID());
+        test2 = playerService.findByID(test2.getID()).get();
+        assertThat(test2.getHealth() < hp);
 
     }
+
 }

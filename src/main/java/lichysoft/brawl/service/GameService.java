@@ -60,7 +60,7 @@ public class GameService {
 
             message = "You hit for: " + damage;
             if (damage < attacker.get().getMinAttack()) {
-                    message += " it was a miss ";
+                message += " it was a miss ";
             } else if (damage > attacker.get().getMaxAttack()) {
                 message += " it was a critical hit! ";
             }
@@ -121,11 +121,12 @@ public class GameService {
                 case "Hunter":
                     attacker.get().setManaPoints(attacker.get().getManaPoints() - 10);
                     double chance = Math.random() * 100;
+                    message = "You performed special action \n";
                     if (chance > 85) {
                         defender.get().setHealth(defender.get().getHealth() - 800);
-                        message = "You hit for: " + 800;
+                        message += "You hit for: " + 800;
                     } else {
-                        message = "It was a miss";
+                        message += "It was a miss";
                     }
                     break;
                 case "Warrior":
@@ -139,7 +140,7 @@ public class GameService {
                     } else {
                         int damage = playerService.calculatedDamage(attacker.get()) + 300;
                         defender.get().setHealth(defender.get().getHealth() - damage);
-                        message = "You lost 200 hp and hit for:" + damage;
+                        message = "You performed special action \nYou lost 200 hp and hit for:" + damage;
                     }
                     break;
                 case "Priest":
